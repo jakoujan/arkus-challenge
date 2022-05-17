@@ -1,0 +1,22 @@
+## YAML Template.
+---
+logging:
+    level:
+        web: DEBUG
+server:
+    port: 9090
+spring:
+    r2dbc:
+        url: r2dbc:postgresql://127.0.0.1:5432/challenge
+        username: challenge
+        password: Ch4ll3ng3
+springbootwebfluxjjwt:
+   password:
+        encoder:
+            secret: MyS3cr3tK3y4k3y
+            iteration: 33
+            keylength: 256
+jwt:
+    secret: $5FkOtL902S$22#2JFir38e834jf83r4jsdlkjdf8u234lknjsdSDFhkjsdf834SDfhjhwdf83$93kf8438hflals0238nsdf8wren234823483$5FkOtL902S$22#2JFir38e834jf83r4jsdlkjdf8u234lknjsdSDFhkjsdf834SDfhjhwdf83$93kf8438hflals0238nsdf8wren2348234jf83jf874fkfjsjdit73nvbgpq83JDKru543
+    expiration: 3600
+        
