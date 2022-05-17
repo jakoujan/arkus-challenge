@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
     public Mono<User> create(User user) {
         System.out.println(user);
         return Mono.just(user).flatMap(u -> {
+            u.setActive(Boolean.TRUE);
             u.setPassword(this.passwordEncoder.encode(u.getPassword()));
             return userRepository.save(u);
         });

@@ -1,0 +1,10 @@
+<div class="main-menu">
+    <div class="module" *ngFor="let module of modules">
+        <div class="module-title">
+            <div>{{ module.title }}</div>
+        </div>
+        <div class="submodules">
+            <a *ngFor="let submodule of module.submodules" (click)="navigate(submodule)">{{ submodule.name }}</a>
+        </div>
+    </div>
+</div>

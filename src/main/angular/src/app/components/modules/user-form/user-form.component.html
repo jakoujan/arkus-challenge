@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>Datos de usuario</h2>
+<mat-dialog-content class="sep-bottom-20">
+    <form [formGroup]="form" novalidate>
+        <div class="row sep-top-20">
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput placeholder="Nombre" formControlName="name">
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('username')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Correo electronico</mat-label>
+                    <input matInput placeholder="Correo electronico" formControlName="email" required>
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('email')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput placeholder="Usuario" formControlName="username">
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('username')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" placeholder="Password" formControlName="password">
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('password')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Perfil</mat-label>
+                    <mat-select matNativeControl placeholder="Perfil" formControlName="userRole" required>
+                        <mat-option *ngFor="let profile of profiles" [value]="profile.role">
+                            {{ profile.description }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('userRole')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button class="sep-right-10" (click)="close()">Cancelar</button>
+    <button mat-flat-button color="accent" [disabled]="form.invalid" (click)="save()">Guardar</button>
+</mat-dialog-actions>

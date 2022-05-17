@@ -1,0 +1,31 @@
+<div class="navigation-container">
+    <mat-toolbar class="main-toolbar">
+        <button type="button" class="toggle-button" aria-label="Mostrar menú" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon aria-label="Menu principal">menu</mat-icon>
+        </button>
+        <span class="title">
+            <p>Administrador</p>
+        </span>
+        <div class="filler"></div>
+        <button mat-icon-button aria-labelledby="Salir de la aplicación" (click)="goto('logout')">
+            <mat-icon>exit_to_app</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-sidenav-container class="sidenav-container" [hasBackdrop]="(isHandset$ | async)">
+        <mat-sidenav #drawer class="sidenav" fixedInViewport
+            [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'push'"
+            [opened]="false">
+            <mat-nav-list>
+                <div class="profile">
+                    <div class="name">
+                        <span>{{ session.user.name }}</span>
+                    </div>
+                </div>
+                <modules-panel-menu (onNavigate)="onNavigate()"></modules-panel-menu>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

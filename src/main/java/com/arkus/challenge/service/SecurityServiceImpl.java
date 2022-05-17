@@ -26,30 +26,24 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public Mono<Response> login(LoginData data) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(data.getUsername(),
-                data.getPassword());
-        return this.authenticationManager.authenticate(token).doOnError(err -> System.out.println(err.getMessage())).doOnNext(auth -> {
-            if (auth.isAuthenticated()) {
-                ReactiveSecurityContextHolder.getContext().doOnNext(sc -> sc.setAuthentication(auth));
-            }
-        }).flatMap(auth -> this.userRepository.findByUsername(data.getUsername()).flatMap(u -> {
-            u.setPassword(null);
-            Response response = Response.getInstance()
-                    .addData(Constants.TOKEN, this.jwtUtils.generateToken(auth.getName()))
-                    .addData(Constants.USER, u);
-            return Mono.just(response);
-        }));
+        return Mono.just(new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword()))
+                .flatMap(token -> this.authenticationManager.authenticate(token))
+                .flatMap(auth -> this.userRepository.findByUsername(data.getUsername()).flatMap(u -> {
+                    u.setPassword(null);
+                    Response response = Response.getInstance()
+                            .addData(Constants.TOKEN, this.jwtUtils.generateToken(auth.getName()))
+                            .addData(Constants.USER, u);
+                    return Mono.just(response);
+                })).onErrorReturn(Response.builder().code(401).message("Error al iniciar sesión").build());
     }
 
     /**
+     *
      */
     @Override
     public Mono<Response> logout() {
-        return ReactiveSecurityContextHolder.getContext().doOnNext(sc -> sc.setAuthentication(null)).flatMap(sc -> {
-            var response = Response.getInstance();
-            response.setMessage("La sesión se ha cerrado con exito");
-            return Mono.just(response);
-        });
+        return ReactiveSecurityContextHolder.getContext().doOnNext(sc -> sc.setAuthentication(null))
+                .flatMap(sc -> Mono.just(Response.builder().message("La sesión se ha cerrado con exito").build()));
     }
 
 }

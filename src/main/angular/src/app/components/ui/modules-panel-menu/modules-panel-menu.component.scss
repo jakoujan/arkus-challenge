@@ -1,0 +1,45 @@
+.main-menu {
+    color: #666666;
+    padding: 10px 0;
+
+    .module {
+        border-bottom: 1px solid #eeeeee;
+        margin-bottom: 10px;
+
+        .module-title {
+            display: flex;
+            flex-direction: row;
+            font-size: 14px;
+            padding: 0 0 5px 10px;
+            font-weight: 700;
+
+            div {
+                padding-top: 3px;
+            }
+        }
+
+        .submodules {
+            display: flex;
+            flex-direction: column;
+
+            a {
+                font-size: 13px;
+                padding: 5px 0 5px 50px;
+                cursor: pointer;
+                user-select: none;
+                transition: background 0.5s, color 0.5s;
+            }
+
+            a::before {
+                content: '- ';
+                font-weight: 800;
+                color: #eeeeee;
+            }
+
+            a:hover {
+                color: #353A41;
+                background: #eeeeee;
+            }
+        }
+    }
+}
