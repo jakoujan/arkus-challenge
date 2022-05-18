@@ -30,11 +30,18 @@ export class ModulesPanelMenuComponent implements OnInit {
   private buildMenu(role: string): Array<Module> {
     const modules: Array<Module> = [];
     const mods = MODULES.map(a => ({ ...a }));
-    mods.filter(m => m.submodules.filter(s => s.role === role).length >= 1).map(m => {
-      let mod: Module = m;
-      m.submodules = m.submodules.filter(s => s.role === role);
-      modules.push(m);
-    });
+    if (role === constants.ROLE_USER) {
+      mods.filter(m => m.submodules.filter(s => s.role === role).length >= 1).map(m => {
+        let mod: Module = m;
+        m.submodules = m.submodules.filter(s => s.role === role);
+        modules.push(m);
+      });
+    } else {
+      mods.map(m => {
+        let mod: Module = m;
+        modules.push(m);
+      });
+    }
 
     return modules;
   }

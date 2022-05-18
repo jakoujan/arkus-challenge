@@ -77,6 +77,9 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Mono<Void> delete(Long id) {
         return Mono.just(id).flatMap(accountRepository::findById).switchIfEmpty(Mono.error(new RecordNotFoundException("Usuario no encontrado")))
-                .then(accountRepository.deleteById(id));
+                .flatMap(account -> {
+                    account.setActive(Boolean.FALSE);
+                    return this.accountRepository.save(account);
+                }).then();
     }
 }

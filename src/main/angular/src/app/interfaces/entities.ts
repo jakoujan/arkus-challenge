@@ -27,3 +27,10 @@ export interface IProfile {
     role: string;
     description: string;
 }
+
+export interface IAccount {
+    id: number;
+    accountName: string;
+    customerName: string;
+    responsible: string;
+}

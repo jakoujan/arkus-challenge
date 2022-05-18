@@ -34,6 +34,7 @@ import { UiModule } from '../ui/ui.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LayoutModule } from '@angular/cdk/layout';
 import { UserFormComponent } from './user-form/user-form.component';
+import { AccountFormComponent } from './account-form/account-form.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { UserFormComponent } from './user-form/user-form.component';
     UsersComponent,
     AccountsComponent,
     AssignmentsComponent,
-    UserFormComponent
+    UserFormComponent,
+    AccountFormComponent
   ],
   imports: [
     CommonModule,

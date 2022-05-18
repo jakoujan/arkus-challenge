@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Datos de usuario</h2>
+<mat-dialog-content class="sep-bottom-20">
+    <form [formGroup]="form" novalidate>
+        <div class="row sep-top-20">
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Nombre de cliente</mat-label>
+                    <input matInput placeholder="Nombre" formControlName="customerName">
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('customerName')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Nombre de cuenta</mat-label>
+                    <input matInput placeholder="Nombre de cuenta" formControlName="accountName" required>
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('accountName')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Responsable</mat-label>
+                    <input matInput placeholder="Responsable" formControlName="responsible">
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('responsible')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button class="sep-right-10" (click)="close()">Cancelar</button>
+    <button mat-flat-button color="accent" [disabled]="form.invalid" (click)="save()">Guardar</button>
+</mat-dialog-actions>

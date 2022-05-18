@@ -55,7 +55,7 @@ export const MODULES: Array<Module> = [
                 id: 'profile',
                 uri: '/modules/profile',
                 default: false,
-                role: 'ROLE_ADMIN',
+                role: 'ROLE_USER',
                 active: false
             }
         ],

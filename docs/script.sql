@@ -15,3 +15,18 @@ create table tbl_account (
   responsible varchar(150) not null,
   primary key (account_id)
 );
+
+create table tbl_assignment (
+  assignment_id int generated always as identity,
+  user_id int not null,
+  account_id int not null,
+  start_date timestamp not null,
+  end_date timestamp null,
+  status int not null,
+  primary key (assignment_id),
+  foreign key (user_id) references tbl_user(user_id),
+  foreign key (account_id) references tbl_account(account_id)
+);
+
+create view view_assignment as (SELECT a.assignment_id, a.user_id, a.account_id, a.start_date, a.end_date, a.status, u.name, ac.account_name FROM tbl_assignment a
+INNER JOIN tbl_user u ON (u.user_id = a.user_id) INNER JOIN tbl_account ac ON (ac.account_id = a.account_id));
