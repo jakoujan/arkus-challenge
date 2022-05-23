@@ -1,3 +1,5 @@
+import { EAssingmentStatus } from "../enums/enums";
+
 export interface IResponse {
     code: number;
     message: string;
@@ -21,6 +23,9 @@ export interface IUser {
     name: string;
     email: string;
     userRole: string;
+    englishLevel: string;
+    techKnowledge: string;
+    resumeLink: string;
 }
 
 export interface IProfile {
@@ -33,4 +38,23 @@ export interface IAccount {
     accountName: string;
     customerName: string;
     responsible: string;
+}
+
+export interface IAssignment {
+    id: number;
+    user: number;
+    account: number;
+    startDate: Date;
+    endDate: Date;
+    status: number;
+}
+
+export interface IAssignmentView extends IAssignment {
+    name: string;
+    accountName: string;
+}
+
+export interface IAssignmentData {
+    user: IUser;
+    status: EAssingmentStatus;
 }

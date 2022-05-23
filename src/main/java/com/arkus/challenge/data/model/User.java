@@ -35,6 +35,9 @@ public class User implements Serializable {
     private String userRole;
     @JsonIgnore
     private boolean active;
+    private String englishLevel;
+    private String techKnowledge;
+    private String resumeLink;
 
     public User(User user) {
         this.id = user.getId();

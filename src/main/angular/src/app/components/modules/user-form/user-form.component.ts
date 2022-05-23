@@ -30,7 +30,10 @@ export class UserFormComponent implements OnInit {
       name: [this.user.name, Validators.required],
       password: [this.user.password, Validators.required],
       email: [this.user.email, Validators.compose([Validators.required, Validators.email])],
-      userRole: [this.user.userRole, Validators.required]
+      userRole: [this.user.userRole, Validators.required],
+      englishLevel: [this.user.englishLevel, Validators.required],
+      techKnowledge: [this.user.techKnowledge, Validators.required],
+      resumeLink: [this.user.resumeLink, Validators.required],
     });
 
     if (this.movement === EMovement.UPDATE) {
@@ -45,6 +48,9 @@ export class UserFormComponent implements OnInit {
     this.user.password = this.form.get('password').value;
     this.user.email = this.form.get('email').value;
     this.user.userRole = this.form.get('userRole').value;
+    this.user.englishLevel = this.form.get('englishLevel').value;
+    this.user.techKnowledge = this.form.get('techKnowledge').value;
+    this.user.resumeLink = this.form.get('resumeLink').value;
     this.dialogRef.close(this.user);
   }
 

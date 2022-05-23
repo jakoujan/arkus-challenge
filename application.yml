@@ -3,6 +3,8 @@
 logging:
     level:
         web: DEBUG
+    file:
+        path: /opt/log/challenge
 server:
     port: 9090
 spring:

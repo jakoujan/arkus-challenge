@@ -18,7 +18,7 @@ export class AccountFormComponent implements OnInit {
   movement: EMovement;
 
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AccountFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.movement = this.data.movement;

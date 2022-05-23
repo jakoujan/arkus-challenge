@@ -18,6 +18,7 @@ import { AccountFormComponent } from '../account-form/account-form.component';
 export class AccountsComponent extends BaseComponent implements OnInit {
 
   dataSource: MatTableDataSource<IAccount>;
+  accounts: Array<IAccount> = [];
   length: number = 0;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['accountName', 'actions', 'customerName', 'responsible'];
@@ -51,7 +52,10 @@ export class AccountsComponent extends BaseComponent implements OnInit {
 
   }
 
-  ngAfterViewInit() {
+  public find() {
+    let f = this.filter.entity.accountName ? this.filter.entity.accountName.toLowerCase() : '';
+    this.dataSource = new MatTableDataSource(this.accounts.filter(account => account.accountName.toLowerCase().indexOf(f) >= 0));
+    this.changeDetectorRefs.detectChanges();
   }
 
   public setFilter(searchable?: boolean) {
@@ -59,6 +63,7 @@ export class AccountsComponent extends BaseComponent implements OnInit {
       this.filter.page = 0;
     }
     this.accountService.getAccounts(this.filter).subscribe(response => {
+      this.accounts = response;
       this.dataSource = new MatTableDataSource(response);
       this.changeDetectorRefs.detectChanges();
     })

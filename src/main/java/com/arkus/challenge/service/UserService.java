@@ -10,4 +10,6 @@ public interface UserService {
     Mono<User> create(User user);
     Mono<User> update(Long id, User user);
     Mono<Void> delete(Long id);
+    Flux<User> getAvailableUsers();
+    Flux<User> getAssignedUsers(Long accountId);
 }

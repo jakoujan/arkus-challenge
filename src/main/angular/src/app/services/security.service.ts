@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { IResponse, IUser } from '../interfaces/entities';
-import { Service, IParam } from "./service";
+import { Service } from "./service";
 import { ICredentialRequest } from '../interfaces/request';
 
 @Injectable({
@@ -31,13 +31,7 @@ export class SecurityService extends Service {
     this.accessorEmitter.next(user);
   }
 
-  public logout(user: String): Observable<IResponse> {
-    const params: Array<IParam> = [
-      {
-        name: 'user',
-        value: user
-      }
-    ];
-    return this.http.get<IResponse>(Service.getApiUrl(SecurityService.LOGOUT, params));
+  public logout(): Observable<IResponse> {
+    return this.http.get<IResponse>(SecurityService.LOGOUT);
   }
 }

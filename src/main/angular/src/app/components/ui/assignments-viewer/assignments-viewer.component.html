@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Historial de asignaciones</h2>
+<mat-dialog-content class="sep-bottom-20">
+    <div class="assignments-panel">
+        <mat-list>
+            <div mat-subheader>Asignación actual</div>
+            <mat-list-item>
+                <mat-icon mat-list-icon class="assigned">assignment_turned_in</mat-icon>
+                <div mat-line class="account">{{ assignment.accountName }}</div>
+                <div mat-line> <strong>Fecha de asignación:</strong> {{ assignment.startDate | date: 'dd-MM-yyyy' }}
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <div mat-subheader *ngIf="others.length >= 1">Asignaciones anteriores</div>
+            <mat-list-item *ngFor="let assignment of others">
+                <mat-icon mat-list-icon class="not-assigned">assignment_returned</mat-icon>
+                <div mat-line class="account">{{ assignment.accountName }}</div>
+                <div mat-line><strong>Fecha de asignación:</strong> {{ assignment.startDate | date: 'dd-MM-yyyy' }}
+                </div>
+                <div mat-line><strong>Fecha de terminación:</strong> {{ assignment.endDate | date: 'dd-MM-yyyy' }}
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button class="sep-right-10" (click)="close()">Cerrar</button>
+</mat-dialog-actions>

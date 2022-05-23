@@ -11,19 +11,11 @@
     </mat-toolbar-row>
     <mat-toolbar-row class="search-bar" [ngClass]="{'showed-search-bar': !filter.hidden}">
         <mat-icon class="search-icon">search</mat-icon>
-        <mat-form-field class="input-full-width next-input searchable-input" appearance="standard"
+        <mat-form-field class="input-full-width next-input searchable-input" appearance="outline"
             [hideRequiredMarker]="false" [floatLabel]="'never'">
             <input matInput placeholder="Nombre de cuenta" [(ngModel)]="filter.entity.accountName">
         </mat-form-field>
-        <mat-form-field class="input-full-width next-input searchable-input" appearance="standard"
-            [hideRequiredMarker]="false" [floatLabel]="'never'">
-            <input matInput placeholder="Cliente" [(ngModel)]="filter.entity.customerName">
-        </mat-form-field>
-        <mat-form-field class="input-full-width next-input searchable-input" appearance="standard"
-            [hideRequiredMarker]="false" [floatLabel]="'never'">
-            <input matInput placeholder="Responsable" [(ngModel)]="filter.entity.responsible">
-        </mat-form-field>
-        <button mat-icon-button class="search-button" aria-labelledby="Busqueda" (click)="setFilter(true)">
+        <button mat-icon-button class="search-button" aria-labelledby="Busqueda" (click)="find()">
             <mat-icon>search</mat-icon>
         </button>
         <button mat-icon-button aria-labelledby="Cerrar la busqueda" (click)="toggleSearchBar()">

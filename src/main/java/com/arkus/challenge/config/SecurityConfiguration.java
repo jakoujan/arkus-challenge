@@ -58,7 +58,15 @@ class SecurityConfiguration {
                 .authenticationManager(authenticationManager())
                 .securityContextRepository(securityContextRepository)
                 .requestCache().requestCache(NoOpServerRequestCache.getInstance())
-                .and()
+                .and().exceptionHandling().authenticationEntryPoint((swe, e) -> {
+                    return Mono.fromRunnable(() -> {
+                        swe.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                    });
+                }).accessDeniedHandler((swe, e) -> {
+                    return Mono.fromRunnable(() -> {
+                        swe.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
+                    });
+                }).and()
                 .logout(logout -> {
                     logout.logoutSuccessHandler(new ServerLogoutSuccessHandler() {
                         @Override

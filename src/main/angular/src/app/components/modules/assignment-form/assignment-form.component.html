@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Nueva asignación</h2>
+<mat-dialog-content class="sep-bottom-20">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Cuenta</mat-label>
+                    <mat-select matNativeControl placeholder="Cuenta" formControlName="account" required>
+                        <mat-option *ngFor="let account of accounts" [value]="account.id">
+                            {{ account.accountName }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('account')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div cdkDropListGroup>
+                    <div class="asignment-container separator">
+                        <h2>Asignados a la cuenta</h2>
+                        <div cdkDropList [cdkDropListData]="assignedUsers" class="asignment-list"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="asignment-box" *ngFor="let assignment of assignedUsers" cdkDrag
+                                [cdkDragDisabled]="checkItem(assignment)">
+                                {{assignment.user.name}}</div>
+                        </div>
+                    </div>
+                    <div class="asignment-container">
+                        <h2>Disponibles</h2>
+                        <div cdkDropList [cdkDropListData]="availableUsers" class="asignment-list"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="asignment-box" *ngFor="let assignment of availableUsers" cdkDrag>
+                                {{assignment.user.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button class="sep-right-10" (click)="close()">Cancelar</button>
+    <button mat-flat-button color="accent" [disabled]="form.invalid" (click)="save()">Guardar</button>
+</mat-dialog-actions>

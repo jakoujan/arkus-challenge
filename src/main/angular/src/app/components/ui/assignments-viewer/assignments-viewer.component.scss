@@ -1,0 +1,17 @@
+.assignments-panel {
+    margin: 20px 0;
+
+    .assigned {
+        color: #00a40b;
+    }
+
+    .not-assigned {
+        color: #a40000;
+    }
+
+    .account {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+}

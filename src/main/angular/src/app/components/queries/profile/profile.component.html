@@ -1,1 +1,25 @@
-<p>profile works!</p>
+<mat-toolbar class="module-toolbar" role="heading">
+    <mat-toolbar-row>
+        <span>Perfil de usuario</span>
+        <span class="filler"></span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card class="card-table">
+    <mat-card-content class="card-table-content">
+        <div class="profile">
+            <div class="profile-image">
+                <img src="/assets/images/profile.png" alt="{{ user.name }}">
+            </div>
+            <div class="profile-info">
+                <h3><strong>Nombre:</strong> {{ user.name }}</h3>
+                <p><strong>Correo electronico:</strong> {{ user.email }}</p>
+                <p><strong>Nivel de ingles: </strong> {{ user.englishLevel }}</p>
+                <div class="tech-knowledge">
+                    {{ user.techKnowledge }}
+                </div>
+                <p><strong>Curriculum: </strong> {{ user.resumeLink }}</p>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

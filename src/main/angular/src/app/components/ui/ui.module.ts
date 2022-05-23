@@ -26,6 +26,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ModulesPanelMenuComponent } from './modules-panel-menu/modules-panel-menu.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { CustomMatErrorComponent } from './custom-mat-error/custom-mat-error.component';
+import { AssignmentsViewerComponent } from './assignments-viewer/assignments-viewer.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CustomMatErrorComponent } from './custom-mat-error/custom-mat-error.com
     ModulesPanelMenuComponent,
     ConfirmationDialogComponent,
     CustomMatErrorComponent,
+    AssignmentsViewerComponent
   ],
   exports: [
     SpinnerComponent,

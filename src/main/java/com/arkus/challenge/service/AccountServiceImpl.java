@@ -33,7 +33,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Flux<Account> findAll() {
 
-        return this.accountRepository.findAll();
+        return this.accountRepository.findAllByActive(Boolean.TRUE);
     }
 
     /**

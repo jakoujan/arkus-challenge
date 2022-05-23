@@ -35,6 +35,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { LayoutModule } from '@angular/cdk/layout';
 import { UserFormComponent } from './user-form/user-form.component';
 import { AccountFormComponent } from './account-form/account-form.component';
+import { AssignmentFormComponent } from './assignment-form/assignment-form.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 
 @NgModule({
@@ -43,7 +46,8 @@ import { AccountFormComponent } from './account-form/account-form.component';
     AccountsComponent,
     AssignmentsComponent,
     UserFormComponent,
-    AccountFormComponent
+    AccountFormComponent,
+    AssignmentFormComponent
   ],
   imports: [
     CommonModule,
@@ -80,6 +84,7 @@ import { AccountFormComponent } from './account-form/account-form.component';
     MatTabsModule,
     PipesModule,
     MatTooltipModule,
+    DragDropModule
   ]
 })
 export class ModulesModule { }

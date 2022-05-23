@@ -70,6 +70,9 @@ public class UserServiceImpl implements UserService {
                     u.setName(user.getName());
                     u.setEmail(user.getEmail());
                     u.setUserRole(user.getUserRole());
+                    u.setEnglishLevel(user.getEnglishLevel());
+                    u.setTechKnowledge(user.getTechKnowledge());
+                    u.setResumeLink(user.getResumeLink());
                     return userRepository.save(u);
                 });
     }
@@ -87,5 +90,22 @@ public class UserServiceImpl implements UserService {
                     u.setActive(Boolean.FALSE);
                     return userRepository.save(u);
                 }).then();
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Flux<User> getAvailableUsers() {
+        return this.userRepository.findAvailableUsers(Boolean.TRUE);
+    }
+
+    /**
+     * @param accountId 
+     * @return
+     */
+    @Override
+    public Flux<User> getAssignedUsers(Long accountId) {
+       return this.userRepository.findAssignedUsers(accountId, Boolean.TRUE);
     }
 }

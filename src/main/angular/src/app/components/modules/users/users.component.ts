@@ -18,6 +18,7 @@ import { UserFormComponent } from '../user-form/user-form.component';
 export class UsersComponent extends BaseComponent implements OnInit {
 
   dataSource: MatTableDataSource<IUser>;
+  users: Array<IUser> = [];
   length: number = 0;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['name', 'actions', 'username', 'email', 'role'];
@@ -38,6 +39,9 @@ export class UsersComponent extends BaseComponent implements OnInit {
       name: undefined,
       email: undefined,
       userRole: undefined,
+      englishLevel: undefined,
+      techKnowledge: undefined,
+      resumeLink: undefined,
     },
     startDate: undefined,
     endDate: undefined,
@@ -53,7 +57,10 @@ export class UsersComponent extends BaseComponent implements OnInit {
 
   }
 
-  ngAfterViewInit() {
+  public find() {
+    let f = this.filter.entity.name ? this.filter.entity.name.toLowerCase() : '';
+    this.dataSource = new MatTableDataSource(this.users.filter(user => user.name.toLowerCase().indexOf(f) >= 0));
+    this.changeDetectorRefs.detectChanges();
   }
 
   public setFilter(searchable?: boolean) {
@@ -61,7 +68,8 @@ export class UsersComponent extends BaseComponent implements OnInit {
       this.filter.page = 0;
     }
     this.userService.getUsers(this.filter).subscribe(response => {
-      this.dataSource = new MatTableDataSource(response);
+      this.users = response;
+      this.dataSource = new MatTableDataSource(this.users);
       this.changeDetectorRefs.detectChanges();
     })
   }
@@ -75,6 +83,9 @@ export class UsersComponent extends BaseComponent implements OnInit {
       name: undefined,
       email: undefined,
       userRole: undefined,
+      englishLevel: undefined,
+      techKnowledge: undefined,
+      resumeLink: undefined,
     }
   }
 
@@ -86,6 +97,9 @@ export class UsersComponent extends BaseComponent implements OnInit {
       name: undefined,
       email: undefined,
       userRole: undefined,
+      englishLevel: undefined,
+      techKnowledge: undefined,
+      resumeLink: undefined,
     };
     this.showForm(entity, EMovement.CREATE);
   }

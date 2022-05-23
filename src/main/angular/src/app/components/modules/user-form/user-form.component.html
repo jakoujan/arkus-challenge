@@ -56,6 +56,37 @@
                 </mat-form-field>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Nivel de ingles</mat-label>
+                    <input matInput placeholder="Nivel de ingles" formControlName="englishLevel">
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('englishLevel')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Link de CV (Google DOC)</mat-label>
+                    <input matInput placeholder="Link de CV (Google DOC)" formControlName="resumeLink">
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('resumeLink')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="input-full-width" appearance="fill">
+                    <mat-label>Conocimientos técnicos</mat-label>
+                    <textarea matInput placeholder="Conocimientos técnicos" formControlName="techKnowledge"></textarea>
+                    <mat-error>
+                        <custom-mat-error [control]="form.get('techKnowledge')"></custom-mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

@@ -1,1 +1,54 @@
-<p>assignments works!</p>
+<mat-toolbar class="module-toolbar" role="heading">
+    <mat-toolbar-row>
+        <span>Asignaciones</span>
+        <span class="filler"></span>
+        <button mat-flat-button color="accent" aria-labelledby="Nuevo cuenta" (click)="addAssignment()">
+            Nueva asignación
+        </button>
+        <button mat-icon-button class="search-button" aria-labelledby="Busqueda" (click)="toggleSearchBar()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="search-bar" [ngClass]="{'showed-search-bar': !filter.hidden}">
+        <mat-icon class="search-icon">search</mat-icon>
+        <mat-form-field class="input-full-width next-input searchable-input" appearance="outline"
+            [hideRequiredMarker]="false" [floatLabel]="'never'">
+            <input matInput placeholder="Nombre de cuenta" [(ngModel)]="filter.entity.accountName">
+        </mat-form-field>
+        <mat-form-field class="input-full-width next-input searchable-input" appearance="outline"
+            [hideRequiredMarker]="false" [floatLabel]="'never'">
+            <input matInput placeholder="Usuario" [(ngModel)]="filter.entity.name">
+        </mat-form-field>
+
+        <button mat-icon-button aria-labelledby="Cerrar la busqueda" (click)="toggleSearchBar()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card class="card-table">
+    <mat-card-content class="card-table-content">
+        <div class="assignments">
+            <mat-card class="assignment" *ngFor="let assignment of filteredAssignments">
+                <mat-card-header>
+                    <div mat-card-avatar class="avatar-image"></div>
+                    <div class="data">
+                        <mat-card-title class="name">{{ assignment.name }}</mat-card-title>
+                        <mat-card-subtitle class="account">{{ assignment.accountName }}</mat-card-subtitle>
+                    </div>
+                    <button mat-icon-button [matMenuTriggerFor]="options">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #options="matMenu">
+                        <button mat-menu-item (click)="assignmentsViewer(assignment)">
+                            <mat-icon>summarize</mat-icon> Historial de usuario
+                        </button>
+                        <button mat-menu-item (click)="deleteAssignment(assignment)">
+                            <mat-icon>delete</mat-icon> Eliminar
+                        </button>
+                    </mat-menu>
+                </mat-card-header>
+            </mat-card>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -5,6 +5,9 @@ create table tbl_user (
   name varchar(150) not null,
   email varchar(100) not null,
   user_role varchar(15) not null,
+  english_level varchar(50) not null,
+  tech_knowledge text null,
+  resume_link varchar(250) null,
   primary key (user_id)
 );
 

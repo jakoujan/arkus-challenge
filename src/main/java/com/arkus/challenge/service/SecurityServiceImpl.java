@@ -43,7 +43,7 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     public Mono<Response> logout() {
         return ReactiveSecurityContextHolder.getContext().doOnNext(sc -> sc.setAuthentication(null))
-                .flatMap(sc -> Mono.just(Response.builder().message("La sesión se ha cerrado con exito").build()));
+                .flatMap(sc -> Mono.just(Response.builder().code(200).message("La sesión se ha cerrado con exito").build()));
     }
 
 }

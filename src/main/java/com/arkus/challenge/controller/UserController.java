@@ -37,4 +37,14 @@ public class UserController {
     public Mono<Void> deleteUser(@PathVariable("id") Long id) {
         return userService.delete(id);
     }
+
+    @GetMapping("/available")
+    public Flux<User> getAvailableUsers() {
+        return this.userService.getAvailableUsers();
+    }
+
+    @GetMapping("/assigned/{accountId}")
+    public Flux<User> getAssignedUsers(@PathVariable("accountId") Long accountId) {
+        return this.userService.getAssignedUsers(accountId);
+    }
 }

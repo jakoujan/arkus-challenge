@@ -53,7 +53,7 @@ export const MODULES: Array<Module> = [
             {
                 name: 'Consulta de Perfil',
                 id: 'profile',
-                uri: '/modules/profile',
+                uri: '/queries/profile',
                 default: false,
                 role: 'ROLE_USER',
                 active: false

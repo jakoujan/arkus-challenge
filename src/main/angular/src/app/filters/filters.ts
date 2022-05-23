@@ -1,4 +1,4 @@
-import { IAccount, IUser } from "../interfaces/entities";
+import { IAccount, IAssignmentView, IUser } from "../interfaces/entities";
 
 export interface IFilter<T> {
     entity: T;
@@ -14,5 +14,8 @@ export interface IUserFilter extends IFilter<IUser> {
 }
 
 export interface IAccountFilter extends IFilter<IAccount> {
+}
+
+export interface IAssignmentViewFilter extends IFilter<IAssignmentView> {
 }
 

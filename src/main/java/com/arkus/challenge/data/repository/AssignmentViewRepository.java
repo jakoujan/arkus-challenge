@@ -11,5 +11,7 @@ import reactor.core.publisher.Flux;
 @Repository
 public interface AssignmentViewRepository extends ReactiveCrudRepository<AssignmentView, Long> {
 
-    Flux<AssignmentView> findAllByStatus( int status);
+    Flux<AssignmentView> findAllByStatus(int status);
+
+    Flux<AssignmentView> findAllByUserOrderByStatusAsc(Long userId);
 }
